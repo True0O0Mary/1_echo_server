@@ -1,11 +1,12 @@
 import socket
 
 while True:
-    sock = socket.socket()
-    sock.bind(('', 9090))
+    sock = socket.socket() 
+    sock.bind(('', 9090)) 
     sock.listen(1)
     conn, addr = sock.accept()
     print(addr)
+    
     msg = ''
 
     while True:
