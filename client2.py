@@ -1,8 +1,8 @@
 import socket
 import getpass
 def port_addr_name():
-    addr = getpass.getpass(prompt="Input addres: ")
-    port = int(getpass.getpass(prompt="Input port number: "))
+    addr = input("Input addres: ")
+    port = int(input("Input port number: "))
     return (addr, port) 
 
 def connect_to_server():
