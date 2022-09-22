@@ -5,7 +5,16 @@ logging.basicConfig(filename="server.log", format='%(asctime)s %(clientip)-15s %
 port = 9090
 
 while True:
-    sock = socket.socket() 
+    sock = socket.socket()
+    res=1
+
+    while True:
+        res = sock.connect_ex(("127.0.0.1", port))
+        print(port)
+        if res != 0:
+            break
+        port += 1
+
     sock.bind(('', port)) 
     sock.listen(1)
     print(f"Server has started, listens port {port}")
