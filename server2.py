@@ -1,7 +1,8 @@
 import socket
 import logging
+from ident import *
 
-logging.basicConfig(filename="server.log", format='%(asctime)s %(clientip)-15s %(user)-8s %(message)s', level=logging.INFO)
+logging.basicConfig(filename="server.log", format='%(asctime)s %(message)s', level=logging.INFO)
 port = 9090
 
 while True:
@@ -10,17 +11,19 @@ while True:
 
     while True:
         res = sock.connect_ex(("127.0.0.1", port))
-        print(port)
         if res != 0:
             break
         port += 1
-
+    
     sock.bind(('', port)) 
     sock.listen(1)
     print(f"Server has started, listens port {port}")
     logging.info(f"Server has started, listens port {port}")
+    
     conn, addr = sock.accept()
-    print(addr)
+    print(f"Server has connected to address {addr[0]}") 
+    logging.info(f"Server has connected to address {addr[0]}")
+    check_user(addr[0])
     
 
     while True:
