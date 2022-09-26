@@ -23,7 +23,11 @@ while True:
     conn, addr = sock.accept()
     print(f"Server has connected to address {addr[0]}") 
     logging.info(f"Server has connected to address {addr[0]}")
-    check_user(addr[0])
+    
+    name = conn.recv(1024).decode()
+    password = conn.recv(1024).decode()
+    #print(addr[0], name, password)
+    check_user(addr[0], name, password)
     
 
     while True:
